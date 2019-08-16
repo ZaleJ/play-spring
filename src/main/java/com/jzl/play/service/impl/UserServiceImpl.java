@@ -4,6 +4,7 @@ import com.jzl.play.mapper.UserMapper;
 import com.jzl.play.model.User;
 import com.jzl.play.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
@@ -18,6 +19,7 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
+    @Cacheable(value = "user")
     public List<User> selectUsers(User user) {
         if (user == null) {
             return null;
